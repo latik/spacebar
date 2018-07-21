@@ -13,9 +13,13 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="app_homepage")
      */
-    public function homePage()
+    public function homePage(Twig $twig)
     {
-        return new Response('test');
+        return new Response(
+          $twig->render(
+            'article/homepage.html.twig'
+          )
+        );
     }
 
     /**
