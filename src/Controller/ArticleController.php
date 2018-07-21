@@ -26,15 +26,13 @@ class ArticleController extends AbstractController
     /**
      * @Route("/news/{slug}", name="article_show")
      */
-    public function show($slug, LoggerInterface $logger, Twig $twig, MarkdownHelper $markdownHelper)
+    public function show($slug, Twig $twig, MarkdownHelper $markdownHelper)
     {
         $comments = [
           'first' => '1 comment',
           'second' => '2 comment',
           'third' => '3 comment',
         ];
-
-        $logger->info('Heeelo!!!');
 
         $articleContent = <<<EOF
 Spicy **jalapeno bacon** ipsum dolor amet veniam shank in dolore. Ham hock nisi landjaeger cow,
