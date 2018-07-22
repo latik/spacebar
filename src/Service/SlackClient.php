@@ -40,6 +40,7 @@ class SlackClient
     }
 
     /**
+     * @required
      * @param LoggerInterface $logger
      */
     public function setLogger(LoggerInterface $logger): void
