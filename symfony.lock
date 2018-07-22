@@ -251,6 +251,9 @@
             "ref": "e921bdbfe20cdefa3b82f379d1cd36df1bc8d115"
         }
     },
+    "symfony/form": {
+        "version": "4.1.x-dev"
+    },
     "symfony/framework-bundle": {
         "version": "3.3",
         "recipe": {
@@ -265,6 +268,12 @@
     },
     "symfony/http-kernel": {
         "version": "v4.1.1"
+    },
+    "symfony/inflector": {
+        "version": "4.1.x-dev"
+    },
+    "symfony/intl": {
+        "version": "4.1.x-dev"
     },
     "symfony/lts": {
         "version": "4-dev"
@@ -296,6 +305,9 @@
     "symfony/orm-pack": {
         "version": "dev-master"
     },
+    "symfony/polyfill-intl-icu": {
+        "version": "1.8-dev"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.8.0"
     },
@@ -308,6 +320,9 @@
     "symfony/profiler-pack": {
         "version": "v1.0.3"
     },
+    "symfony/property-access": {
+        "version": "4.1.x-dev"
+    },
     "symfony/routing": {
         "version": "4.0",
         "recipe": {
@@ -317,8 +332,23 @@
             "ref": "cda8b550123383d25827705d05a42acf6819fe4e"
         }
     },
+    "symfony/security-core": {
+        "version": "4.1.x-dev"
+    },
+    "symfony/security-csrf": {
+        "version": "4.1.x-dev"
+    },
     "symfony/stopwatch": {
         "version": "v4.1.1"
+    },
+    "symfony/translation": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "6bcd6c570c017ea6ae5a7a6a027c929fd3542cd8"
+        }
     },
     "symfony/twig-bridge": {
         "version": "v4.1.1"
@@ -331,6 +361,9 @@
             "version": "3.3",
             "ref": "f75ac166398e107796ca94cc57fa1edaa06ec47f"
         }
+    },
+    "symfony/validator": {
+        "version": "4.1.x-dev"
     },
     "symfony/var-dumper": {
         "version": "v4.1.1"
