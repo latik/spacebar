@@ -1,4 +1,7 @@
 {
+    "clue/stream-filter": {
+        "version": "v1.4.0"
+    },
     "composer/ca-bundle": {
         "version": "1.1.1"
     },
@@ -44,6 +47,15 @@
             "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
         }
     },
+    "guzzlehttp/guzzle": {
+        "version": "6.3-dev"
+    },
+    "guzzlehttp/promises": {
+        "version": "1.4-dev"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.5-dev"
+    },
     "knplabs/knp-markdown-bundle": {
         "version": "1.7.0"
     },
@@ -53,17 +65,68 @@
     "monolog/monolog": {
         "version": "1.23.0"
     },
+    "nexylan/slack": {
+        "version": "2.x-dev"
+    },
+    "nexylan/slack-bundle": {
+        "version": "2.x-dev"
+    },
+    "php-http/cache-plugin": {
+        "version": "1.6-dev"
+    },
+    "php-http/client-common": {
+        "version": "1.8-dev"
+    },
+    "php-http/discovery": {
+        "version": "1.4.0"
+    },
+    "php-http/guzzle6-adapter": {
+        "version": "1.2-dev"
+    },
+    "php-http/httplug": {
+        "version": "1.2-dev"
+    },
+    "php-http/httplug-bundle": {
+        "version": "1.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.6",
+            "ref": "4655962c64e2de96c418caf576c57215711c7877"
+        }
+    },
+    "php-http/logger-plugin": {
+        "version": "1.0-dev"
+    },
+    "php-http/message": {
+        "version": "1.6-dev"
+    },
+    "php-http/message-factory": {
+        "version": "1.0-dev"
+    },
+    "php-http/promise": {
+        "version": "1.0-dev"
+    },
+    "php-http/stopwatch-plugin": {
+        "version": "1.1.0"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
     "psr/container": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.x-dev"
+    },
     "psr/log": {
         "version": "1.0.2"
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "ralouphie/getallheaders": {
+        "version": "2.0.5"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -169,6 +232,9 @@
             "version": "3.1",
             "ref": "51b7a31438c8aeeda7931a0ece98a945c91e7f20"
         }
+    },
+    "symfony/options-resolver": {
+        "version": "4.1.x-dev"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.8.0"
