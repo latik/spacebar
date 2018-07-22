@@ -9,24 +9,21 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Environment as Twig;
 
 class ArticleController extends AbstractController
 {
     /**
      * @Route("/", name="app_homepage")
      */
-    public function homePage(Twig $twig, ArticleRepository $repository)
+    public function homePage(ArticleRepository $repository)
     {
         $articles = $repository->findAllPublishedOrderedByNewest();
 
-        return new Response(
-          $twig->render(
-            'article/homepage.html.twig',
-            [
-              'articles' => $articles,
-            ]
-          )
+        return $this->render(
+          'article/homepage.html.twig',
+          [
+            'articles' => $articles,
+          ]
         );
     }
 
@@ -35,7 +32,6 @@ class ArticleController extends AbstractController
      */
     public function show(
       $slug,
-      Twig $twig,
       SlackClient $slack,
       EntityManagerInterface $em
     ) {
@@ -53,14 +49,12 @@ class ArticleController extends AbstractController
           'third' => '3 comment',
         ];
 
-        return new Response(
-          $twig->render(
-            'article/show.html.twig',
-            [
-              'article' => $article,
-              'comments' => $comments,
-            ]
-          )
+        return $this->render(
+          'article/show.html.twig',
+          [
+            'article' => $article,
+            'comments' => $comments,
+          ]
         );
     }
 
