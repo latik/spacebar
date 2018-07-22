@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Service\MarkdownHelper;
-use Nexy\Slack\Client as Slack;
+use App\Service\SlackClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,13 +26,9 @@ class ArticleController extends AbstractController
     /**
      * @Route("/news/{slug}", name="article_show")
      */
-    public function show($slug, Twig $twig, MarkdownHelper $markdownHelper, Slack $slack)
+    public function show($slug, Twig $twig, MarkdownHelper $markdownHelper, SlackClient $slack)
     {
-        $message = $slack->createMessage()
-          ->from('Khan')
-          ->withIcon(':ghost:')
-          ->setText('Ah, Kirk, my old friend...');
-        $slack->sendMessage($message);
+        $slack->sendMessage('Kahn', 'Ah, Kirk, my old friend...');
 
         $comments = [
           'first' => '1 comment',
