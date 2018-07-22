@@ -51,8 +51,14 @@ class ArticleController extends AbstractController
      * @Route("/news/{slug}/heart", name="article_toggle_heart", methods={"POST"})
      * @throws \Exception
      */
-    public function toggleArticleHeart($slug)
+    public function toggleArticleHeart(Article $article)
     {
-        return $this->json(['hearts' => \random_int(5, 100)]);
+        $article->incrementHeartCount();
+
+        return $this->json(
+          [
+            'hearts' => $article->getHeartCount(),
+          ]
+        );
     }
 }

@@ -133,9 +133,21 @@ class Article
         return $this->imageFilename;
     }
 
+    public function getImagePath(): string
+    {
+        return 'images/'.$this->getImageFilename();
+    }
+
     public function setImageFilename(?string $imageFilename): self
     {
         $this->imageFilename = $imageFilename;
+
+        return $this;
+    }
+
+    public function incrementHeartCount(): self
+    {
+        $this->heartCount++;
 
         return $this;
     }
