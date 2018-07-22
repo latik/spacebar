@@ -15,6 +15,7 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('slug')
             ->add('content')
+            ->add('author')
             ->add('publishedAt')
         ;
     }
