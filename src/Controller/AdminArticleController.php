@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,20 +19,20 @@ class AdminArticleController extends Controller
     /**
      * @Route("/", name="admin_article_index", methods="GET")
      * @param ArticleRepository $articleRepository
-     * @return Response
+     * @Template
      */
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository)
     {
-        return $this->render('admin_article/index.html.twig', ['articles' => $articleRepository->findAll()]);
+        return ['articles' => $articleRepository->findAll()];
     }
 
     /**
      * @Route("/new", name="admin_article_new", methods="GET|POST")
      * @param Request $request
      * @param ArticleRepository $articleRepository
-     * @return Response
+     * @Template
      */
-    public function new(Request $request, ArticleRepository $articleRepository): Response
+    public function new(Request $request, ArticleRepository $articleRepository)
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -43,23 +44,20 @@ class AdminArticleController extends Controller
             return $this->redirectToRoute('admin_article_index');
         }
 
-        return $this->render(
-          'admin_article/new.html.twig',
-          [
-            'article' => $article,
-            'form' => $form->createView(),
-          ]
-        );
+        return [
+          'article' => $article,
+          'form' => $form->createView(),
+        ];
     }
 
     /**
      * @Route("/{id}", name="admin_article_show", methods="GET")
      * @param Article $article
-     * @return Response
+     * @Template
      */
-    public function show(Article $article): Response
+    public function show(Article $article)
     {
-        return $this->render('admin_article/show.html.twig', ['article' => $article]);
+        return ['article' => $article];
     }
 
     /**
@@ -67,9 +65,9 @@ class AdminArticleController extends Controller
      * @param Request $request
      * @param Article $article
      * @param ArticleRepository $articleRepository
-     * @return Response
+     * @Template
      */
-    public function edit(Request $request, Article $article, ArticleRepository $articleRepository): Response
+    public function edit(Request $request, Article $article, ArticleRepository $articleRepository)
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
@@ -80,13 +78,10 @@ class AdminArticleController extends Controller
             return $this->redirectToRoute('admin_article_edit', ['id' => $article->getId()]);
         }
 
-        return $this->render(
-          'admin_article/edit.html.twig',
-          [
-            'article' => $article,
-            'form' => $form->createView(),
-          ]
-        );
+        return [
+          'article' => $article,
+          'form' => $form->createView(),
+        ];
     }
 
     /**
