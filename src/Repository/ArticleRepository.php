@@ -4,8 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
@@ -26,6 +26,18 @@ class ArticleRepository extends ServiceEntityRepository
           ->orderBy('a.publishedAt', 'DESC')
           ->getQuery()
           ->getResult();
+    }
+
+    public function store(Article $article)
+    {
+        $this->_em->persist($article);
+        $this->_em->flush();
+    }
+
+    public function remove($article)
+    {
+        $this->_em->remove($article);
+        $this->_em->flush();
     }
 
     private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
