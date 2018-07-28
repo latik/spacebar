@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 use App\Service\SlackClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,11 +33,7 @@ class ArticleController extends AbstractController
     {
         $slack->sendMessage('Kahn', 'Ah, Kirk, my old friend...');
 
-        $comments = [
-          'first' => '1 comment',
-          'second' => '2 comment',
-          'third' => '3 comment',
-        ];
+        $comments = $article->getComments();
 
         return $this->render(
           'article/show.html.twig',
