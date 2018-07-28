@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
+use App\Repository\CommentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -183,9 +183,7 @@ class Article
      */
     public function getNonDeletedComments(): Collection
     {
-        $criteria = Criteria::create()
-          ->andWhere(Criteria::expr()->eq('isDeleted', false))
-          ->orderBy(['createdAt' => 'DESC']);
+        $criteria = CommentRepository::createNonDeletedCriteria();
 
         return $this->comments->matching($criteria);
     }
