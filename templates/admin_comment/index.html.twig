@@ -6,6 +6,24 @@
     <div class="row">
         <div class="col-sm-12">
             <h1>Manage Comments</h1>
+
+            <form>
+                <div class="input-group mb-3">
+                    <input type="text"
+                           name="q"
+                           value="{{ query }}"
+                           class="form-control"
+                           placeholder="Search..."
+                    >
+                    <div class="input-group-append">
+                        <button type="submit"
+                                class="btn btn-outline-secondary">
+                            <span class="fa fa-search"/>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -32,6 +50,12 @@
                         </td>
                         <td>
                             {{ comment.createdAt|ago }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            No comments found
                         </td>
                     </tr>
                 {% endfor %}
