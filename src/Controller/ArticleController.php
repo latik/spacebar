@@ -33,7 +33,7 @@ class ArticleController extends AbstractController
     {
         $slack->sendMessage('Kahn', 'Ah, Kirk, my old friend...');
 
-        $comments = $article->getComments();
+        $comments = $article->getNonDeletedComments();
 
         return $this->render(
           'article/show.html.twig',
