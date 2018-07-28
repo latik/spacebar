@@ -58,7 +58,7 @@ class Article
     private $imageFilename;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article", fetch="EXTRA_LAZY", orphanRemoval=true)
      * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $comments;
