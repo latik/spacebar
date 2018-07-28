@@ -28,6 +28,7 @@
         "twig/extensions": "^1.5@dev"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.0@dev",
         "sensiolabs/security-checker": "^4.1",
         "symfony/debug-pack": "^1.0",
         "symfony/maker-bundle": "^1.0@dev",
