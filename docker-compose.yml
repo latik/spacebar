@@ -12,6 +12,15 @@ services:
         networks:
             - webnet
 
+    composer:
+        image: composer:latest
+        volumes:
+            - .:/var/www
+        working_dir: /var/www
+        depends_on:
+            - app
+        command: install
+
     web:
         image: nginx:alpine
         volumes:
