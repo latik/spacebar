@@ -44,5 +44,12 @@ services:
         networks:
             - webnet
 
+    adminer:
+        image: adminer:4.6.2
+        ports:
+            - 8080:8080
+        networks:
+            - webnet
+
 networks:
     webnet:
