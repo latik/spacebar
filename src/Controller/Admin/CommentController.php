@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Repository\CommentRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminCommentController extends Controller
+class CommentController extends Controller
 {
     private $commentsPerPage = 10;
 

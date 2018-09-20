@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/article")
  */
-class AdminArticleController extends Controller
+class ArticleController extends Controller
 {
     /**
      * @Route("/", name="admin_article_index", methods="GET")
