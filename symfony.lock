@@ -245,6 +245,9 @@
             "ref": "e3868d2f4a5104f19f844fe551099a00c6562527"
         }
     },
+    "symfony/contracts": {
+        "version": "1.0-dev"
+    },
     "symfony/debug": {
         "version": "v4.1.1"
     },
@@ -310,9 +313,6 @@
     },
     "symfony/intl": {
         "version": "4.1.x-dev"
-    },
-    "symfony/lts": {
-        "version": "4-dev"
     },
     "symfony/maker-bundle": {
         "version": "1.0",
@@ -406,6 +406,9 @@
     },
     "symfony/var-dumper": {
         "version": "v4.1.1"
+    },
+    "symfony/var-exporter": {
+        "version": "4.2-dev"
     },
     "symfony/web-profiler-bundle": {
         "version": "3.3",
