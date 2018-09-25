@@ -1,7 +1,6 @@
 {
     "type": "project",
     "license": "proprietary",
-    "minimum-stability": "dev",
     "require": {
         "php": "^7.1.3",
         "ext-ctype": "*",
@@ -14,18 +13,18 @@
         "sensio/framework-extra-bundle": "^5.2",
         "stof/doctrine-extensions-bundle": "^1.3@dev",
         "symfony/asset": "^4.1",
-        "symfony/console": "^4.1",
-        "symfony/dotenv": "^4.1",
-        "symfony/flex": "^1.0",
+        "symfony/console": "*",
+        "symfony/dotenv": "*",
+        "symfony/flex": "^1.1",
         "symfony/form": "^4.1",
-        "symfony/framework-bundle": "^4.1",
+        "symfony/framework-bundle": "*",
         "symfony/orm-pack": "dev-master",
         "symfony/security-bundle": "^4.1",
         "symfony/security-csrf": "^4.1",
         "symfony/swiftmailer-bundle": "^3.2",
         "symfony/twig-bundle": "^4.1",
         "symfony/validator": "^4.1",
-        "symfony/yaml": "^4.1",
+        "symfony/yaml": "*",
         "twig/extensions": "^1.5@dev"
     },
     "require-dev": {
@@ -53,6 +52,7 @@
         }
     },
     "replace": {
+        "paragonie/random_compat": "*",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
         "symfony/polyfill-php71": "*",
@@ -77,7 +77,8 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false
+            "allow-contrib": false,
+            "require": "4.1.*"
         }
     }
 }
