@@ -5,11 +5,11 @@ namespace App\Controller\Admin;
 use App\Repository\CommentRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CommentController extends Controller
+class CommentController extends AbstractController
 {
     private $commentsPerPage = 10;
 
