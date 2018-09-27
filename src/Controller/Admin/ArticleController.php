@@ -18,6 +18,7 @@ class ArticleController extends AbstractController
 {
     /**
      * @Route("/", name="admin_article_index", methods="GET")
+     *
      * @param ArticleRepository $articleRepository
      * @Template
      */
@@ -28,7 +29,8 @@ class ArticleController extends AbstractController
 
     /**
      * @Route("/new", name="admin_article_new", methods="GET|POST")
-     * @param Request $request
+     *
+     * @param Request           $request
      * @param ArticleRepository $articleRepository
      * @Template
      */
@@ -52,6 +54,7 @@ class ArticleController extends AbstractController
 
     /**
      * @Route("/{id}", name="admin_article_show", methods="GET")
+     *
      * @param Article $article
      * @Template
      */
@@ -62,8 +65,9 @@ class ArticleController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="admin_article_edit", methods="GET|POST")
-     * @param Request $request
-     * @param Article $article
+     *
+     * @param Request           $request
+     * @param Article           $article
      * @param ArticleRepository $articleRepository
      * @Template
      */
@@ -86,9 +90,11 @@ class ArticleController extends AbstractController
 
     /**
      * @Route("/{id}", name="admin_article_delete", methods="DELETE")
-     * @param Request $request
-     * @param Article $article
+     *
+     * @param Request           $request
+     * @param Article           $article
      * @param ArticleRepository $articleRepository
+     *
      * @return Response
      */
     public function delete(Request $request, Article $article, ArticleRepository $articleRepository): Response

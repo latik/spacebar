@@ -22,6 +22,7 @@ class SlackClient
     /**
      * @param string $from
      * @param string $message
+     *
      * @throws \Http\Client\Exception
      */
     public function sendMessage(string $from, string $message)
@@ -39,5 +40,4 @@ class SlackClient
 
         $this->slack->sendMessage($slackMessage);
     }
-
 }

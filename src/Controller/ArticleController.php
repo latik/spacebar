@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
-use App\Repository\CommentRepository;
 use App\Service\SlackClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,6 +45,7 @@ class ArticleController extends AbstractController
 
     /**
      * @Route("/news/{slug}/heart", name="article_toggle_heart", methods={"POST"})
+     *
      * @throws \Exception
      */
     public function toggleArticleHeart(Article $article)

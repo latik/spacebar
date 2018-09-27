@@ -36,7 +36,7 @@ class MarkdownHelper
     public function parse(string $source): string
     {
         $this->logger->info('main channel');
-        if (stripos($source, 'bacon') !== false) {
+        if (false !== stripos($source, 'bacon')) {
             $this->markdownLogger->info('They are talking about bacon again!');
         }
 

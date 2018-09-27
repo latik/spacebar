@@ -22,9 +22,11 @@ class ArticleStatsCommand extends Command
     }
 
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @return int|null|void
+     *
      * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -48,6 +50,7 @@ class ArticleStatsCommand extends Command
                 break;
             case 'json':
                 $io->write(\json_encode($data));
+
                 break;
             default:
                 throw new \RuntimeException('What kind of crazy format is that!?');

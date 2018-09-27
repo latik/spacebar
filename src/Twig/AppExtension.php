@@ -36,6 +36,7 @@ class AppExtension extends AbstractExtension implements ServiceSubscriberInterfa
 
     /**
      * Returns an array of service types required by such instances, optionally keyed by the service names used internally.
+     *
      * @return array The required service types, optionally keyed by service names
      */
     public static function getSubscribedServices()

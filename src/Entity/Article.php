@@ -171,7 +171,7 @@ class Article
 
     public function incrementHeartCount(): self
     {
-        $this->heartCount++;
+        ++$this->heartCount;
 
         return $this;
     }
