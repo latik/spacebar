@@ -551,6 +551,9 @@
     "symplify/package-builder": {
         "version": "v5.0.2"
     },
+    "thecodingmachine/phpstan-strict-rules": {
+        "version": "v0.10.3"
+    },
     "thecodingmachine/safe": {
         "version": "v0.1.5"
     },
