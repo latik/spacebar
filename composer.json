@@ -42,6 +42,8 @@
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*",
         "symfony/web-server-bundle": "*",
+        "symplify/coding-standard": "^5.0",
+        "symplify/easy-coding-standard": "^5.0",
         "thecodingmachine/phpstan-strict-rules": "^0.10.3"
     },
     "config": {
