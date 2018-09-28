@@ -34,8 +34,8 @@ services:
             - webnet
 
     database:
-        image: mysql:5
-        restart: always
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
         volumes:
             - ./database:/docker-entrypoint-initdb.d
         environment:
