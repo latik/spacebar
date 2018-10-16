@@ -34,6 +34,7 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.0@dev",
+        "object-calisthenics/phpcs-calisthenics-rules": "^3.3",
         "phpstan/phpstan": "^0.10.3",
         "rector/rector": "@dev",
         "sensiolabs/security-checker": "^4.1",
@@ -82,9 +83,8 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "phpstan": [
-            "phpstan analyse -c phpstan.neon --level max src tests"
-      ]
+        "phpstan": "phpstan analyse -c phpstan.neon --level max src tests",
+        "cs-check": "ecs check src"
     },
     "conflict": {
         "symfony/symfony": "*"

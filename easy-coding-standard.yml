@@ -3,6 +3,7 @@ imports:
   - { resource: 'vendor/symplify/easy-coding-standard/config/psr12.yml' }
   - { resource: 'vendor/symplify/easy-coding-standard/config/symfony.yml' }
   - { resource: 'vendor/symplify/easy-coding-standard/config/symfony-risky.yml' }
+  - { resource: 'vendor/object-calisthenics/phpcs-calisthenics-rules/config/object-calisthenics.yml' }
 
 services:
   Symplify\CodingStandard\Sniffs\CleanCode\CognitiveComplexitySniff:
