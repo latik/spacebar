@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
+use App\ValueObject\EmailAddress;
+use App\ValueObject\Password;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -34,15 +35,12 @@ class User implements UserInterface
      */
     private $password;
 
-    public static function create(
-      string $email,
-      string $cleanTextPassword,
-      UserPasswordEncoderInterface $encoder
-    ): self {
+    public static function create(EmailAddress $email, Password $password): self
+    {
         $instance = new self();
 
-        $instance->email = $email;
-        $instance->password = $encoder->encodePassword($instance, $cleanTextPassword);
+        $instance->email = $email->toString();
+        $instance->password = $password->toHash();
 
         return $instance;
     }
