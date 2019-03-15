@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\ValueObject\EmailAddress;
+use App\ValueObject\Password;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -33,6 +35,17 @@ class User implements UserInterface
      */
     private $password;
 
+    public static function create(EmailAddress $email, Password $password): self
+    {
+        $instance = new self();
+
+        $instance->email = $email->toString();
+        $instance->password = $password->toHash();
+        $instance->roles[] = 'ROLE_USER';
+
+        return $instance;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -57,7 +70,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -84,7 +97,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self

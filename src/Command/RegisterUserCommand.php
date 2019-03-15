@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\DTO;
+namespace App\Command;
 
 use App\ArgumentResolver\RequestObject;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class User extends RequestObject
+class RegisterUserCommand extends RequestObject
 {
     /**
      * @var string
