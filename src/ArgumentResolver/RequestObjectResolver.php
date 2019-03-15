@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ArgumentResolver;
 
-use InvalidArgumentException;
+use App\Exception\ApiProblemException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
@@ -68,7 +68,7 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
         $errors = $this->validator->validate($dto);
 
         if (0 !== count($errors)) {
-            throw new InvalidArgumentException('');
+            throw new ApiProblemException($errors);
         }
     }
 }
