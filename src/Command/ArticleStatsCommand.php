@@ -1,7 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Command;
 
+use Exception;
+use function json_encode;
+use function random_int;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,7 +13,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class ArticleStatsCommand extends Command
+final class ArticleStatsCommand extends Command
 {
     protected static $defaultName = 'ArticleStats';
 
@@ -27,7 +31,7 @@ class ArticleStatsCommand extends Command
      *
      * @return int|null|void
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -36,7 +40,7 @@ class ArticleStatsCommand extends Command
 
         $data = [
           'slug' => $slug,
-          'hearts' => \random_int(10, 100),
+          'hearts' => random_int(10, 100),
         ];
 
         switch ($input->getOption('format')) {
@@ -49,11 +53,11 @@ class ArticleStatsCommand extends Command
 
                 break;
             case 'json':
-                $io->write(\json_encode($data));
+                $io->write(json_encode($data));
 
                 break;
             default:
-                throw new \RuntimeException('What kind of crazy format is that!?');
+                throw new RuntimeException('What kind of crazy format is that!?');
         }
 
         $io->success('You have a new command! Now make it your own! Pass --help to see your options.');

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Service;
 
@@ -6,20 +6,23 @@ use Michelf\MarkdownInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Cache\Adapter\AdapterInterface as Cache;
 
-class MarkdownHelper
+final class MarkdownHelper
 {
     /**
      * @var MarkdownInterface
      */
     private $markdown;
+
     /**
      * @var Cache
      */
     private $cache;
+
     /**
      * @var LoggerInterface
      */
     private $logger;
+
     /**
      * @var LoggerInterface
      */

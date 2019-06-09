@@ -1,14 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use App\Service\SlackClient;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController extends AbstractController
+final class ArticleController extends AbstractController
 {
     /**
      * @Route("/", name="app_homepage")
@@ -46,7 +47,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/news/{slug}/heart", name="article_toggle_heart", methods={"POST"})
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function toggleArticleHeart(Article $article)
     {

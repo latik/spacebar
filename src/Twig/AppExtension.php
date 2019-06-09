@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Twig;
 
@@ -8,7 +8,7 @@ use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
-class AppExtension extends AbstractExtension implements ServiceSubscriberInterface
+final class AppExtension extends AbstractExtension implements ServiceSubscriberInterface
 {
     /**
      * @var ContainerInterface
@@ -23,7 +23,9 @@ class AppExtension extends AbstractExtension implements ServiceSubscriberInterfa
     public function getFilters(): array
     {
         return [
-          new TwigFilter('cached_markdown', [$this, 'processMarkdown'], ['is_safe' => ['html']]),
+          new TwigFilter('cached_markdown', function ($value) : string {
+              return $this->processMarkdown($value);
+          }, ['is_safe' => ['html']]),
         ];
     }
 

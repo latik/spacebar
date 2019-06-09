@@ -1,11 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Service;
 
 use App\Helper\LoggerTrait;
+use Http\Client\Exception;
 use Nexy\Slack\Client as Slack;
 
-class SlackClient
+final class SlackClient
 {
     use LoggerTrait;
 
@@ -23,7 +24,7 @@ class SlackClient
      * @param string $from
      * @param string $message
      *
-     * @throws \Http\Client\Exception
+     * @throws Exception
      */
     public function sendMessage(string $from, string $message)
     {

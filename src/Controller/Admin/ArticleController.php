@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/article")
  */
-class ArticleController extends AbstractController
+final class ArticleController extends AbstractController
 {
     /**
      * @Route("/", name="admin_article_index", methods="GET")
