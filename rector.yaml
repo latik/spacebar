@@ -1,0 +1,11 @@
+#docker run -v $(pwd):/project rector/rector:latest process /project --config /project/rector.yaml
+parameters:
+    php_version_features: '7.3'
+
+    exclude_paths:
+        - '/src/Migrations/*'
+        - '/tests/*'
+
+    exclude_rectors:
+        - 'Rector\Php\Rector\StaticCall\StaticCallOnNonStaticToInstanceCallRector'
+        - 'Rector\Php\Rector\FuncCall\MultiDirnameRector'

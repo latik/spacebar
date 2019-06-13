@@ -82,7 +82,8 @@
             "@auto-scripts"
         ],
         "phpstan": "phpstan analyse -c phpstan.neon --level max src tests",
-        "cs-check": "ecs check src"
+        "cs-check": "ecs check src",
+        "rector": "rector process src -c rector.yaml -l code-quality -w"
     },
     "conflict": {
         "symfony/symfony": "*"
