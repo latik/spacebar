@@ -341,6 +341,9 @@
             "ref": "e3868d2f4a5104f19f844fe551099a00c6562527"
         }
     },
+    "symfony/contracts": {
+        "version": "v1.1.3"
+    },
     "symfony/css-selector": {
         "version": "v4.1.4"
     },
@@ -404,6 +407,9 @@
             "ref": "1717e67afa995e4f01a25ba9ae7aca5b2327bcaa"
         }
     },
+    "symfony/http-client": {
+        "version": "v4.3.1"
+    },
     "symfony/http-foundation": {
         "version": "v4.1.4"
     },
@@ -436,6 +442,18 @@
             "version": "1.0",
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
+    },
+    "symfony/messenger": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "e332e9487c4f705a78ddf30d5aee8b50a0009db3"
+        },
+        "files": [
+            "config/packages/messenger.yaml"
+        ]
     },
     "symfony/mime": {
         "version": "v4.3.1"
@@ -473,11 +491,17 @@
     "symfony/polyfill-intl-icu": {
         "version": "v1.9.0"
     },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.11.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.9.0"
     },
     "symfony/polyfill-php72": {
         "version": "v1.9.0"
+    },
+    "symfony/polyfill-php73": {
+        "version": "v1.11.0"
     },
     "symfony/process": {
         "version": "v4.1.4"
@@ -511,6 +535,18 @@
             "version": "3.3",
             "ref": "f8a63faa0d9521526499c0a8f403c9964ecb0527"
         }
+    },
+    "symfony/security-core": {
+        "version": "v4.3.1"
+    },
+    "symfony/security-csrf": {
+        "version": "v4.3.1"
+    },
+    "symfony/security-guard": {
+        "version": "v4.3.1"
+    },
+    "symfony/security-http": {
+        "version": "v4.3.1"
     },
     "symfony/serializer": {
         "version": "v4.1.4"
@@ -559,6 +595,9 @@
     },
     "symfony/var-dumper": {
         "version": "v4.1.4"
+    },
+    "symfony/var-exporter": {
+        "version": "v4.3.1"
     },
     "symfony/web-link": {
         "version": "v4.1.4"

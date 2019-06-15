@@ -20,6 +20,7 @@
         "symfony/form": "*",
         "symfony/framework-bundle": "*",
         "symfony/mailer": "*",
+        "symfony/messenger": "*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
         "symfony/process": "*",
