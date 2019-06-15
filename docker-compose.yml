@@ -80,6 +80,12 @@ services:
         networks:
             - webnet
 
+    queue:
+        build: ./docker/rabbitmq/
+        ports:
+            - 5672:5672
+            - 15672:15672
+
     adminer:
         image: adminer:4.6.2
         ports:
