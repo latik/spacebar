@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Command;
+namespace App\Console\Command;
 
 use Exception;
 use function json_encode;
