@@ -22,6 +22,7 @@ RUN set -eux; \
     pecl install \
         apcu \
         amqp \
+        xdebug \
     ; \
     pecl clear-cache; \
     docker-php-ext-enable \
@@ -46,4 +47,4 @@ ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 
 COPY php.ini /usr/local/etc/php/php.ini
 
-COPY . /var/www/html
+COPY conf.d $PHP_INI_DIR/conf.d
