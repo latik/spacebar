@@ -36,6 +36,10 @@ RUN set -eux; \
     \
     apk del .build-deps
 
+# Iconv fix
+RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ gnu-libiconv
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+
 COPY php.ini /usr/local/etc/php/php.ini
 
 COPY . /var/www/html
