@@ -16,8 +16,10 @@ final class TestController extends AbstractController
      */
     public function testPage(ResolverCollection $resolverCollection)
     {
-        dump($resolverCollection);
-        die;
+        foreach ($resolverCollection->handlers as $handler) {
+            echo get_class($handler).PHP_EOL;
+        }
+
         return new Response();
     }
 }

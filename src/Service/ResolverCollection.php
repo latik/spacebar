@@ -6,10 +6,13 @@ namespace App\Service;
 
 class ResolverCollection
 {
+    /**
+     * @var iterable
+     */
+    public $handlers;
+
     public function __construct(iterable $handlers)
     {
-        foreach ($handlers as $handler) {
-            echo get_class($handler).PHP_EOL;
-        }
+        $this->handlers = $handlers;
     }
 }
