@@ -34,12 +34,9 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-
-    App\Service\One:
-        tags: ['app.handler']
-
-    App\Service\Two:
-        tags: ['app.handler']
+    _instanceof:
+        App\Service\Loader:
+            tags: ['app.handler']
 
     App\Service\ResolverCollection:
         arguments: [!tagged app.handler]
