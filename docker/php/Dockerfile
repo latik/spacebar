@@ -7,6 +7,7 @@ RUN set -eux; \
         libzip-dev \
         icu-dev \
         zlib-dev \
+        rabbitmq-c-dev \
     ; \
     \
     docker-php-ext-configure zip --with-libzip; \
@@ -19,11 +20,13 @@ RUN set -eux; \
     ; \
     pecl install \
         apcu \
+        amqp \
     ; \
     pecl clear-cache; \
     docker-php-ext-enable \
         apcu \
         opcache \
+        amqp \
     ; \
     \
     runDeps="$( \
@@ -35,6 +38,10 @@ RUN set -eux; \
     apk add --no-cache --virtual .api-phpexts-rundeps $runDeps; \
     \
     apk del .build-deps
+
+# Iconv fix
+RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ gnu-libiconv
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 
 COPY php.ini /usr/local/etc/php/php.ini
 
