@@ -39,6 +39,10 @@
         <!-- MESSENGER_TRANSPORT_DSN=doctrine://default -->
         <!-- MESSENGER_TRANSPORT_DSN=redis://localhost:6379/messages -->
         <!-- ###- symfony/messenger ### -->
+
+        <!-- ###+ enqueue/enqueue-bundle ### -->
+        <env name="ENQUEUE_DSN" value="null://"/>
+        <!-- ###- enqueue/enqueue-bundle ### -->
     </php>
 
     <testsuites>

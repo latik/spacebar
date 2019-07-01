@@ -6,7 +6,7 @@ services:
         environment:
             TIMEZONE: Europe/Kiev
             DATABASE_URL: pgsql://postgres:spacebar@database:5432/spacebar
-            MESSENGER_TRANSPORT_DSN: amqp://guest:guest@queue:5672/%2f/messages
+            ENQUEUE_DSN: amqp://guest:guest@queue:5672/%2f
         volumes:
             - .:/var/www:cached
         depends_on:
