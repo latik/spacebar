@@ -1,69 +1,61 @@
-SET NAMES utf8;
-SET time_zone = '+00:00';
-SET foreign_key_checks = 0;
-SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+-- Adminer 4.6.2 PostgreSQL dump
 
-USE `spacebar`;
-
-SET NAMES utf8mb4;
-
-CREATE TABLE `article` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `published_at` datetime DEFAULT NULL,
-  `author` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `heart_count` int(11) NOT NULL,
-  `image_filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_23A0E66989D9B62` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE "article" (
+    "id"             integer                NOT NULL,
+    "title"          character varying(255) NOT NULL,
+    "slug"           character varying(100) NOT NULL,
+    "content"        text,
+    "published_at"   timestamp(0),
+    "author"         character varying(255) NOT NULL,
+    "heart_count"    integer                NOT NULL,
+    "image_filename" character varying(255),
+    "created_at"     timestamp(0)           NOT NULL,
+    "updated_at"     timestamp(0)           NOT NULL,
+    CONSTRAINT "article_pkey" PRIMARY KEY ("id"),
+    CONSTRAINT "uniq_23a0e66989d9b62" UNIQUE ("slug")
+) WITH (oids = false);
 
 
-CREATE TABLE `article_tag` (
-  `article_id` int(11) NOT NULL,
-  `tag_id` int(11) NOT NULL,
-  PRIMARY KEY (`article_id`,`tag_id`),
-  KEY `IDX_919694F97294869C` (`article_id`),
-  KEY `IDX_919694F9BAD26311` (`tag_id`),
-  CONSTRAINT `FK_919694F97294869C` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_919694F9BAD26311` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE "article_tag" (
+    "article_id" integer NOT NULL,
+    "tag_id"     integer NOT NULL,
+    CONSTRAINT "article_tag_pkey" PRIMARY KEY ("article_id", "tag_id"),
+    CONSTRAINT "fk_919694f97294869c" FOREIGN KEY (article_id) REFERENCES article (id) ON DELETE CASCADE NOT DEFERRABLE,
+    CONSTRAINT "fk_919694f9bad26311" FOREIGN KEY (tag_id) REFERENCES tag (id) ON DELETE CASCADE NOT DEFERRABLE
+) WITH (oids = false);
+CREATE INDEX "idx_919694f97294869c" ON "article_tag" USING btree ("article_id");
+CREATE INDEX "idx_919694f9bad26311" ON "article_tag" USING btree ("tag_id");
+
+CREATE TABLE "comment" (
+    "id"          integer                NOT NULL,
+    "article_id"  integer                NOT NULL,
+    "author_name" character varying(255) NOT NULL,
+    "content"     text                   NOT NULL,
+    "is_deleted"  boolean                NOT NULL,
+    "created_at"  timestamp(0)           NOT NULL,
+    "updated_at"  timestamp(0)           NOT NULL,
+    CONSTRAINT "comment_pkey" PRIMARY KEY ("id"),
+    CONSTRAINT "fk_9474526c7294869c" FOREIGN KEY (article_id) REFERENCES article (id) NOT DEFERRABLE
+) WITH (oids = false);
+CREATE INDEX "idx_9474526c7294869c" ON "comment" USING btree ("article_id");
 
 
-CREATE TABLE `comment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `article_id` int(11) NOT NULL,
-  `author_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_9474526C7294869C` (`article_id`),
-  CONSTRAINT `FK_9474526C7294869C` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE "tag" (
+    "id"         integer                NOT NULL,
+    "name"       character varying(255) NOT NULL,
+    "slug"       character varying(255) NOT NULL,
+    "created_at" timestamp(0)           NOT NULL,
+    "updated_at" timestamp(0)           NOT NULL,
+    CONSTRAINT "tag_pkey" PRIMARY KEY ("id"),
+    CONSTRAINT "uniq_389b783989d9b62" UNIQUE ("slug")
+) WITH (oids = false);
 
 
-CREATE TABLE `tag` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_389B783989D9B62` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(180) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `roles` json NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE "user" (
+    "id"       integer                NOT NULL,
+    "email"    character varying(180) NOT NULL,
+    "roles"    json                   NOT NULL,
+    "password" character varying(255) NOT NULL,
+    CONSTRAINT "uniq_8d93d649e7927c74" UNIQUE ("email"),
+    CONSTRAINT "user_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
