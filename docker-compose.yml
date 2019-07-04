@@ -5,7 +5,7 @@ services:
         working_dir: /var/www
         environment:
             TIMEZONE: Europe/Kiev
-            DATABASE_URL: mysql://root@database:3306/spacebar
+            DATABASE_URL: pgsql://postgres:spacebar@database:5432/spacebar
             MESSENGER_TRANSPORT_DSN: amqp://guest:guest@queue:5672/%2f/messages
         volumes:
             - .:/var/www
@@ -36,13 +36,11 @@ services:
             - webnet
 
     database:
-        image: mysql
-        command: --default-authentication-plugin=mysql_native_password
-        volumes:
-            - ./database:/docker-entrypoint-initdb.d
+        image: postgres
+        #volumes:
+        #    - ./database:/docker-entrypoint-initdb.d
         environment:
-            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-            MYSQL_DATABASE: spacebar
+            POSTGRES_PASSWORD: spacebar
         networks:
             - webnet
 

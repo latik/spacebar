@@ -8,11 +8,12 @@ RUN set -eux; \
         icu-dev \
         zlib-dev \
         rabbitmq-c-dev \
+        postgresql-dev \
     ; \
     \
     docker-php-ext-configure zip --with-libzip; \
     docker-php-ext-install -j$(nproc) \
-        pdo_mysql \
+        pdo_pgsql \
         bcmath \
         gd \
         intl \
