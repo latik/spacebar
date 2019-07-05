@@ -23,12 +23,10 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
     public function store(User $user)
     {
         $this->_em->persist($user);
-        $this->_em->flush();
     }
 
     public function remove($user)
     {
         $this->_em->remove($user);
-        $this->_em->flush();
     }
 }

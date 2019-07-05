@@ -13,3 +13,9 @@ framework:
             # Route your messages to the transports
             'App\Command\SayHelloCommand': sync
             'App\Command\JobNotification': async
+
+        default_bus: command_bus
+        buses:
+            command_bus:
+                middleware:
+                    - doctrine_transaction
