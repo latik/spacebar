@@ -9,8 +9,9 @@ use App\Backoffice\Domain\User\EmailAddress;
 use App\Backoffice\Domain\User\Password;
 use App\Backoffice\Domain\User\User;
 use App\Backoffice\Domain\User\UserRepositoryInterface;
+use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
-final class RegisterUser
+final class RegisterUser implements MessageHandlerInterface
 {
     /**
      * @var UserRepositoryInterface
@@ -22,7 +23,7 @@ final class RegisterUser
         $this->userRepository = $userRepository;
     }
 
-    public function handle(RegisterUserCommand $command): User
+    public function __invoke(RegisterUserCommand $command): User
     {
         $password = Password::fromString($command->password);
         $email = EmailAddress::fromString($command->email);
