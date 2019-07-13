@@ -1,4 +1,6 @@
 DOCKER-COMPOSE	= docker-compose -f docker-compose.yml
+EXEC_APP 		= $(DOCKER-COMPOSE) exec app
+SYMFONY 		= $(EXEC_APP) bin/console
 
 build: ## build project docker containers
 	$(DOCKER-COMPOSE) build --no-cache
@@ -11,6 +13,14 @@ stop: ## stop the project
 
 destroy: ## removes containers, networks, volumes, and images
 	$(DOCKER-COMPOSE) down --volumes --remove-orphans
+
+vendors: ## install composer dependencies
+	$(EXEC_APP) composer install --no-interaction
+
+db: ## reset the database
+	$(SYMFONY) doctrine:database:drop --if-exists --force
+	$(SYMFONY) doctrine:database:create
+	$(SYMFONY) doctrine:schema:create
 
 .DEFAULT_GOAL := help
 

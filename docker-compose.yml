@@ -8,7 +8,7 @@ services:
             DATABASE_URL: pgsql://postgres:spacebar@database:5432/spacebar
             MESSENGER_TRANSPORT_DSN: amqp://guest:guest@queue:5672/%2f/messages
         volumes:
-            - .:/var/www
+            - .:/var/www:cached
         depends_on:
             - database
         networks:
@@ -31,12 +31,12 @@ services:
         depends_on:
             - app
         ports:
-            - 8000:80
+            - 8090:80
         networks:
             - webnet
 
     database:
-        image: postgres
+        image: postgres:alpine
         #volumes:
         #    - ./database:/docker-entrypoint-initdb.d
         environment:
@@ -90,7 +90,7 @@ services:
     adminer:
         image: adminer:4.6.2
         ports:
-            - 8080:8080
+            - 8089:8080
         networks:
             - webnet
 

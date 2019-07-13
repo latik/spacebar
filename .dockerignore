@@ -1,0 +1,15 @@
+.git/
+.cicleci/
+vendor/
+node_modules/
+**/*.log
+**/._*
+**/.DS_Store
+**/.gitignore
+**/.gitattributes
+**/Thumbs.db
+**/Dockerfile
+.dockerignore
+docker-compose.yaml
+var/cache/*
+var/log/*
