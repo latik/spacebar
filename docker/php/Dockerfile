@@ -48,3 +48,10 @@ ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 COPY php.ini /usr/local/etc/php/php.ini
 
 COPY conf.d $PHP_INI_DIR/conf.d
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+RUN set -eux; \
+    composer global require hirak/prestissimo \
+    && composer clear-cache
