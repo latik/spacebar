@@ -12,7 +12,7 @@ final class User
     private $id;
 
     /**
-     * @var string
+     * @var EmailAddress
      */
     private $email;
 
@@ -22,7 +22,7 @@ final class User
     private $roles = [];
 
     /**
-     * @var string The hashed password
+     * @var Password
      */
     private $password;
 
@@ -30,14 +30,14 @@ final class User
     {
         $instance = new self();
 
-        $instance->email = $email->toString();
-        $instance->password = $password->toHash();
+        $instance->email = $email;
+        $instance->password = $password;
         $instance->roles[] = 'ROLE_USER';
 
         return $instance;
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
