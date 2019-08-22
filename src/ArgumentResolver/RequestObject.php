@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\ArgumentResolver;
 
-class RequestObject
+interface RequestObject
 {
 
 }
