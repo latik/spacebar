@@ -6,5 +6,5 @@ interface UserRepositoryInterface
 {
     public function store(User $user);
 
-    public function remove($user);
+    public function remove(User $user);
 }
