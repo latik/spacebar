@@ -13,23 +13,16 @@ App\Backoffice\Domain\User\User:
             id: true
             generator:
                 strategy: IDENTITY
-    fields:
+    embedded:
         email:
-            type: string
-            scale: 0
-            length: 180
-            unique: true
-            nullable: false
-            precision: 0
+            class: App\Backoffice\Domain\User\EmailAddress
+            columnPrefix: false
+        password:
+            class: App\Backoffice\Domain\User\Password
+            columnPrefix: false
+    fields:
         roles:
             type: json
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
-        password:
-            type: string
             scale: 0
             length: null
             unique: false

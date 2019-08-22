@@ -1,0 +1,10 @@
+App\Backoffice\Domain\User\EmailAddress:
+    type: embeddable
+    fields:
+        email:
+            type: string
+            scale: 0
+            length: 180
+            unique: true
+            nullable: false
+            precision: 0
