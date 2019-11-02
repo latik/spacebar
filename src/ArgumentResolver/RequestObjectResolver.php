@@ -53,7 +53,7 @@ final class RequestObjectResolver implements ArgumentValueResolverInterface
         }
 
         if (0 === strpos($request->headers->get('Content-Type') ?? '', 'application/json')) {
-            $data = (array) json_decode((string) ($request->getContent() ?? ''), true);
+            $data = (array) json_decode((string) ($request->getContent() ?? ''), true, 512, JSON_THROW_ON_ERROR);
             $request->request->replace(\is_array($data) ? $data : []);
         }
 

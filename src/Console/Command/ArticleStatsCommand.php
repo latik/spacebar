@@ -39,7 +39,7 @@ final class ArticleStatsCommand extends Command
      *
      * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $slug = $input->getArgument('slug');
@@ -59,7 +59,7 @@ final class ArticleStatsCommand extends Command
 
                 break;
             case 'json':
-                $io->write(json_encode($data));
+                $io->write(json_encode($data, JSON_THROW_ON_ERROR));
 
                 break;
             default:

@@ -2,10 +2,15 @@
 parameters:
     php_version_features: '7.3'
 
+    sets:
+        - 'code-quality'
+        - 'solid'
+        - 'php71'
+        - 'php72'
+        - 'php73'
+        - 'symfony44'
+
     exclude_paths:
         - '/src/Migrations/*'
         - '/tests/*'
-
-    exclude_rectors:
-        - 'Rector\Php\Rector\StaticCall\StaticCallOnNonStaticToInstanceCallRector'
-        - 'Rector\Php\Rector\FuncCall\MultiDirnameRector'
+        - '/var/*'
