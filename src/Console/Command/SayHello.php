@@ -43,7 +43,7 @@ final class SayHello extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $recipients = ['user@email.dev', 'user2@email.dev'];
         foreach ($recipients as $recipient) {
