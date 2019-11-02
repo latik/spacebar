@@ -19,5 +19,8 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Run code style checks
+      - name: Run code style checks #1
         run: composer run-script cs-check
+
+      - name: Run code style checks #2
+        run: composer run-script rector-code-quality
