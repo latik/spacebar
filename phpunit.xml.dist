@@ -43,6 +43,10 @@
         <!-- ###+ enqueue/enqueue-bundle ### -->
         <env name="ENQUEUE_DSN" value="null://"/>
         <!-- ###- enqueue/enqueue-bundle ### -->
+
+        <!-- ###+ friendsofsymfony/elastica-bundle ### -->
+        <env name="ELASTICSEARCH_URL" value="http://localhost:9200/"/>
+        <!-- ###- friendsofsymfony/elastica-bundle ### -->
     </php>
 
     <testsuites>
