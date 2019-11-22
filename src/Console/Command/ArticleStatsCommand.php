@@ -1,10 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Console\Command;
 
 use Exception;
-use function json_encode;
-use function random_int;
 use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -12,24 +12,28 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use function json_encode;
+use function random_int;
 
 final class ArticleStatsCommand extends Command
 {
+    /**
+     * @var string
+     */
     protected static $defaultName = 'ArticleStats';
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
-          ->setDescription('Returns some article stats!')
-          ->addArgument('slug', InputArgument::OPTIONAL, 'The article\'s slug')
-          ->addOption('format', null, InputOption::VALUE_REQUIRED, 'The output format', 'text');
+            ->setDescription('Returns some article stats!')
+            ->addArgument('slug', InputArgument::OPTIONAL, 'The article\'s slug')
+            ->addOption('format', null, InputOption::VALUE_REQUIRED, 'The output format', 'text')
+        ;
     }
 
     /**
      * @param InputInterface  $input
      * @param OutputInterface $output
-     *
-     * @return int|null|void
      *
      * @throws Exception
      *
@@ -41,8 +45,8 @@ final class ArticleStatsCommand extends Command
         $slug = $input->getArgument('slug');
 
         $data = [
-          'slug' => $slug,
-          'hearts' => random_int(10, 100),
+            'slug' => $slug,
+            'hearts' => random_int(10, 100),
         ];
 
         switch ($input->getOption('format')) {
@@ -63,5 +67,7 @@ final class ArticleStatsCommand extends Command
         }
 
         $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+
+        return 0;
     }
 }

@@ -7,7 +7,7 @@ namespace App\Command;
 use App\ArgumentResolver\RequestObject;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class RegisterUserCommand implements RequestObject
+final class RegisterUserCommand implements RequestObject
 {
     /**
      * @var string

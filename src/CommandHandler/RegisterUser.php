@@ -22,7 +22,7 @@ final class RegisterUser
         $this->userRepository = $userRepository;
     }
 
-    public function handle(RegisterUserCommand $command)
+    public function handle(RegisterUserCommand $command): User
     {
         $password = Password::fromString($command->password);
         $email = EmailAddress::fromString($command->email);

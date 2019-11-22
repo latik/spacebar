@@ -1,7 +1,10 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Security;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,10 +47,10 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     private $passwordEncoder;
 
     public function __construct(
-      UserRepository $userRepository,
-      RouterInterface $router,
-      CsrfTokenManagerInterface $csrfTokenManager,
-      UserPasswordEncoderInterface $passwordEncoder
+        UserRepository $userRepository,
+        RouterInterface $router,
+        CsrfTokenManagerInterface $csrfTokenManager,
+        UserPasswordEncoderInterface $passwordEncoder
     ) {
         $this->router = $router;
         $this->userRepository = $userRepository;
@@ -58,7 +61,7 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     /**
      * Return the URL to the login page.
      */
-    protected function getLoginUrl()
+    protected function getLoginUrl(): string
     {
         return $this->router->generate('app_login');
     }
@@ -68,7 +71,7 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      *
      * If this returns false, the authenticator will be skipped.
      */
-    public function supports(Request $request)
+    public function supports(Request $request): bool
     {
         // do your work when we're POSTing to the login page
         return 'app_login' === $request->attributes->get('_route')
@@ -94,21 +97,21 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      *
      * @param Request $request
      *
-     * @return mixed Any non-null value
-     *
      * @throws UnexpectedValueException If null is returned
+     *
+     * @return mixed Any non-null value
      */
-    public function getCredentials(Request $request)
+    public function getCredentials(Request $request): array
     {
         $credentials = [
-          'email' => $request->request->get('email'),
-          'password' => $request->request->get('password'),
-          'csrf_token' => $request->request->get('_csrf_token'),
+            'email' => $request->request->get('email'),
+            'password' => $request->request->get('password'),
+            'csrf_token' => $request->request->get('_csrf_token'),
         ];
 
         $request->getSession()->set(
-          Security::LAST_USERNAME,
-          $credentials['email']
+            Security::LAST_USERNAME,
+            $credentials['email']
         );
 
         return $credentials;
@@ -126,7 +129,7 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      *
      * @throws AuthenticationException
      *
-     * @return UserInterface|null
+     * @return null|UserInterface
      */
     public function getUser($credentials, UserProviderInterface $userProvider): ?UserInterface
     {
@@ -150,11 +153,11 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      * @param mixed         $credentials
      * @param UserInterface $user
      *
-     * @return bool
-     *
      * @throws AuthenticationException
+     *
+     * @return bool
      */
-    public function checkCredentials($credentials, UserInterface $user)
+    public function checkCredentials($credentials, UserInterface $user): bool
     {
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
@@ -174,7 +177,7 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      *
      * @return RedirectResponse|null
      */
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): ?RedirectResponse
     {
         $targetPath = $this->getTargetPath($request->getSession(), 'main');
         if ($targetPath) {

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
@@ -11,25 +13,28 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class CommentController extends AbstractController
 {
+    /**
+     * @var int
+     */
     private $commentsPerPage = 10;
 
     /**
      * @Route("/admin/comment", name="admin_comment")
      * @Template
      */
-    public function index(CommentRepository $repository, Request $request, PaginatorInterface $paginator)
+    public function index(CommentRepository $repository, Request $request, PaginatorInterface $paginator): array
     {
         $query = $request->query->get('q');
 
         $queryBuilder = $repository->getWithSearchQueryBuilder($query);
         $pagination = $paginator->paginate(
-          $queryBuilder,
-          $request->query->getInt('page', 1) /*page number*/,
-          $this->commentsPerPage
+            $queryBuilder,
+            $request->query->getInt('page', 1) /*page number*/,
+            $this->commentsPerPage
         );
 
         return [
-          'pagination' => $pagination,
+            'pagination' => $pagination,
         ];
     }
 }

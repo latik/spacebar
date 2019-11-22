@@ -23,7 +23,7 @@ final class JobNotificationHandler implements MessageHandlerInterface
     /**
      * @param JobNotification $message
      */
-    public function __invoke(JobNotification $message)
+    public function __invoke(JobNotification $message): void
     {
         sleep(5);
 

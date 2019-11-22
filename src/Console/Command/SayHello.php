@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class SayHello extends Command
+final class SayHello extends Command
 {
     /**
      * @var LoggerInterface
@@ -35,18 +35,22 @@ class SayHello extends Command
         $this->logger = $logger;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
-          ->setName('latik:test:say-hello')
-          ->setDescription('Just my test.');
+            ->setName('latik:test:say-hello')
+            ->setDescription('Just my test.')
+        ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $recipients = ['user@email.dev', 'user2@email.dev'];
         foreach ($recipients as $recipient) {
             $this->messageBus->dispatch(new SayHelloCommand($recipient));
+            $this->logger->debug(sprintf('Send message to %s', $recipient));
         }
+
+        return 0;
     }
 }

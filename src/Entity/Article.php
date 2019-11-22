@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -21,17 +23,23 @@ class Article
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @var string
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=100, unique=true)
      * @Gedmo\Slug(fields={"title"})
+     *
+     * @var string
      */
     private $slug;
 
@@ -51,11 +59,15 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @var string
      */
     private $author;
 
     /**
      * @ORM\Column(type="integer")
+     *
+     * @var int
      */
     private $heartCount = 0;
 
@@ -69,11 +81,15 @@ class Article
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article", fetch="EXTRA_LAZY", orphanRemoval=true)
      * @ORM\OrderBy({"createdAt" = "DESC"})
+     *
+     * @var \App\Entity\Comment[]|\Doctrine\Common\Collections\Collection
      */
     private $comments;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="articles")
+     *
+     * @var \App\Entity\Tag[]|\Doctrine\Common\Collections\Collection
      */
     private $tags;
 

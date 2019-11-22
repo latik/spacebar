@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
@@ -22,7 +24,7 @@ final class ArticleController extends AbstractController
      * @param ArticleRepository $articleRepository
      * @Template
      */
-    public function index(ArticleRepository $articleRepository)
+    public function index(ArticleRepository $articleRepository): array
     {
         return ['articles' => $articleRepository->findAll()];
     }
@@ -47,8 +49,8 @@ final class ArticleController extends AbstractController
         }
 
         return [
-          'article' => $article,
-          'form' => $form->createView(),
+            'article' => $article,
+            'form' => $form->createView(),
         ];
     }
 
@@ -58,7 +60,7 @@ final class ArticleController extends AbstractController
      * @param Article $article
      * @Template
      */
-    public function show(Article $article)
+    public function show(Article $article): array
     {
         return ['article' => $article];
     }
@@ -83,8 +85,8 @@ final class ArticleController extends AbstractController
         }
 
         return [
-          'article' => $article,
-          'form' => $form->createView(),
+            'article' => $article,
+            'form' => $form->createView(),
         ];
     }
 
@@ -106,4 +108,3 @@ final class ArticleController extends AbstractController
         return $this->redirectToRoute('admin_article_index');
     }
 }
-

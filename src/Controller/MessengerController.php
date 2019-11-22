@@ -7,10 +7,11 @@ namespace App\Controller;
 use App\Command\JobNotification;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-class MessengerController extends AbstractController
+final class MessengerController extends AbstractController
 {
     /**
      * @var MessageBusInterface
@@ -31,16 +32,16 @@ class MessengerController extends AbstractController
     /**
      * @Route("/messenger", name="messenger")
      */
-    public function __invoke()
+    public function __invoke(): JsonResponse
     {
         $this->messageBus->dispatch(new JobNotification('A string to be sent...'.time()));
 
         $this->logger->info('Sending new notification');
 
         return $this->json(
-          [
-            'msg' => 'Sending new notification',
-          ]
+            [
+                'msg' => 'Sending new notification',
+            ]
         );
     }
 }

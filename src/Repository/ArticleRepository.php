@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -8,8 +10,8 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Article|null find($id, $lockMode = null, $lockVersion = null)
- * @method Article|null findOneBy(array $criteria, array $orderBy = null)
+ * @method null|Article find($id, $lockMode = null, $lockVersion = null)
+ * @method null|Article findOneBy(array $criteria, array $orderBy = null)
  * @method Article[]    findAll()
  * @method Article[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
@@ -23,36 +25,39 @@ final class ArticleRepository extends ServiceEntityRepository
     public function findAllPublishedOrderedByNewest()
     {
         $this->createQueryBuilder('a')
-          ->addCriteria(CommentRepository::createNonDeletedCriteria());
+            ->addCriteria(CommentRepository::createNonDeletedCriteria())
+        ;
 
         return $this->addIsPublishedQueryBuilder()
-          ->leftJoin('a.tags', 't')
-          ->addSelect('t')
-          ->orderBy('a.publishedAt', 'DESC')
-          ->getQuery()
-          ->getResult();
+            ->leftJoin('a.tags', 't')
+            ->addSelect('t')
+            ->orderBy('a.publishedAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
-    public function store(Article $article)
+    public function store(Article $article): void
     {
         $this->_em->persist($article);
         $this->_em->flush();
     }
 
-    public function remove($article)
+    public function remove($article): void
     {
         $this->_em->remove($article);
         $this->_em->flush();
     }
 
-    private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    private function getOrCreateQueryBuilder(?QueryBuilder $qb = null): QueryBuilder
     {
         return $qb ?: $this->createQueryBuilder('a');
     }
 
-    private function addIsPublishedQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    private function addIsPublishedQueryBuilder(?QueryBuilder $qb = null): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder($qb)
-          ->andWhere('a.publishedAt IS NOT NULL');
+            ->andWhere('a.publishedAt IS NOT NULL')
+        ;
     }
 }

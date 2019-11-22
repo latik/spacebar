@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class RequestObjectResolver implements ArgumentValueResolverInterface
+final class RequestObjectResolver implements ArgumentValueResolverInterface
 {
     /**
      * @var DenormalizerInterface
@@ -25,8 +25,8 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
     private $validator;
 
     public function __construct(
-      DenormalizerInterface $denormalizer,
-      ValidatorInterface $validator
+        DenormalizerInterface $denormalizer,
+        ValidatorInterface $validator
     ) {
         $this->denormalizer = $denormalizer;
         $this->validator = $validator;
@@ -35,16 +35,17 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
     /**
      * {@inheritdoc}
      */
-    public function supports(Request $request, ArgumentMetadata $argument)
+    public function supports(Request $request, ArgumentMetadata $argument): bool
     {
         return $argument->getType() instanceof RequestObject;
     }
 
     /**
      * {@inheritdoc}
+     *
      * @throws ExceptionInterface
      */
-    public function resolve(Request $request, ArgumentMetadata $argument)
+    public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
         $data = $request->request->all();
         if (Request::METHOD_GET === $request->getMethod()) {
@@ -53,7 +54,7 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
 
         if (0 === strpos($request->headers->get('Content-Type') ?? '', 'application/json')) {
             $data = (array) json_decode((string) ($request->getContent() ?? ''), true);
-            $request->request->replace(is_array($data) ? $data : []);
+            $request->request->replace(\is_array($data) ? $data : []);
         }
 
         $dto = $this->denormalizer->denormalize($data, (string) $argument->getType());
@@ -67,7 +68,7 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
     {
         $errors = $this->validator->validate($dto);
 
-        if (0 !== count($errors)) {
+        if (0 !== \count($errors)) {
             throw new ApiProblemException($errors);
         }
     }
