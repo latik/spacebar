@@ -42,6 +42,7 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
 
     /**
      * {@inheritdoc}
+     *
      * @throws ExceptionInterface
      */
     public function resolve(Request $request, ArgumentMetadata $argument)

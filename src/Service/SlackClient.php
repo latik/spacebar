@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Service;
 
@@ -26,7 +28,7 @@ final class SlackClient
      *
      * @throws Exception
      */
-    public function sendMessage(string $from, string $message)
+    public function sendMessage(string $from, string $message): void
     {
         $this->logInfo(
           'Beaming a message to Slack!',

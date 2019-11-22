@@ -6,5 +6,4 @@ namespace App\ArgumentResolver;
 
 interface RequestObject
 {
-
 }

@@ -19,7 +19,7 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function onKernelException(GetResponseForExceptionEvent $event)
+    public function onKernelException(GetResponseForExceptionEvent $event): void
     {
         $e = $event->getException();
         if (!$e instanceof ApiProblemException) {

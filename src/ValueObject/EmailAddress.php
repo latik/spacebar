@@ -3,8 +3,9 @@
 declare(strict_types=1);
 
 namespace App\ValueObject;
-use const FILTER_VALIDATE_EMAIL;
+
 use InvalidArgumentException;
+use const FILTER_VALIDATE_EMAIL;
 
 final class EmailAddress
 {

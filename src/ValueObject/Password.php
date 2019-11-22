@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\ValueObject;
+
 use InvalidArgumentException;
 use const PASSWORD_DEFAULT;
 

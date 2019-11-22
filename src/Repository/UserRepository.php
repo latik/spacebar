@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -19,13 +21,13 @@ final class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function store(User $user)
+    public function store(User $user): void
     {
         $this->_em->persist($user);
         $this->_em->flush();
     }
 
-    public function remove($user)
+    public function remove($user): void
     {
         $this->_em->remove($user);
         $this->_em->flush();

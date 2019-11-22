@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Helper;
 
@@ -21,7 +23,7 @@ trait LoggerTrait
         $this->logger = $logger;
     }
 
-    private function logInfo(string $message, array $context = [])
+    private function logInfo(string $message, array $context = []): void
     {
         if ($this->logger) {
             $this->logger->info($message, $context);

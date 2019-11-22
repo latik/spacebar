@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -33,24 +35,24 @@ final class ArticleRepository extends ServiceEntityRepository
           ->getResult();
     }
 
-    public function store(Article $article)
+    public function store(Article $article): void
     {
         $this->_em->persist($article);
         $this->_em->flush();
     }
 
-    public function remove($article)
+    public function remove($article): void
     {
         $this->_em->remove($article);
         $this->_em->flush();
     }
 
-    private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    private function getOrCreateQueryBuilder(?QueryBuilder $qb = null): QueryBuilder
     {
         return $qb ?: $this->createQueryBuilder('a');
     }
 
-    private function addIsPublishedQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    private function addIsPublishedQueryBuilder(?QueryBuilder $qb = null): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder($qb)
           ->andWhere('a.publishedAt IS NOT NULL');

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Twig;
 
@@ -23,7 +25,7 @@ final class AppExtension extends AbstractExtension implements ServiceSubscriberI
     public function getFilters(): array
     {
         return [
-          new TwigFilter('cached_markdown', function ($value) : string {
+          new TwigFilter('cached_markdown', function ($value): string {
               return $this->processMarkdown($value);
           }, ['is_safe' => ['html']]),
         ];
