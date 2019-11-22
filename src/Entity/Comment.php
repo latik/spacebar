@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -16,27 +18,37 @@ class Comment
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @var string
      */
     private $authorName;
 
     /**
      * @ORM\Column(type="text")
+     *
+     * @var string
      */
     private $content;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @var \App\Entity\Article
      */
     private $article;
 
     /**
      * @ORM\Column(type="boolean")
+     *
+     * @var bool
      */
     private $isDeleted = false;
 

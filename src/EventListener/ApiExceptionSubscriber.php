@@ -7,19 +7,19 @@ namespace App\EventListener;
 use App\Exception\ApiProblemException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class ApiExceptionSubscriber implements EventSubscriberInterface
+final class ApiExceptionSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
-          KernelEvents::EXCEPTION => 'onKernelException',
+            KernelEvents::EXCEPTION => 'onKernelException',
         ];
     }
 
-    public function onKernelException(GetResponseForExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event): void
     {
         $e = $event->getException();
         if (!$e instanceof ApiProblemException) {
@@ -27,8 +27,8 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
         }
 
         $response = new JsonResponse(
-          $e->getViolations(),
-          $e->getStatusCode()
+            $e->getViolations(),
+            $e->getStatusCode()
         );
         $response->headers->set('Content-Type', 'application/problem+json');
 

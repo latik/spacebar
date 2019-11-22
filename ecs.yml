@@ -4,7 +4,7 @@ imports:
   - { resource: 'vendor/symplify/easy-coding-standard/config/set/php71.yaml' }
   - { resource: 'vendor/symplify/easy-coding-standard/config/set/symfony.yaml' }
   - { resource: 'vendor/symplify/easy-coding-standard/config/set/symfony-risky.yaml' }
-  - { resource: 'vendor/object-calisthenics/phpcs-calisthenics-rules/config/object-calisthenics.yml' }
+#  - { resource: 'vendor/object-calisthenics/phpcs-calisthenics-rules/config/object-calisthenics.yml' }
 
 services:
   Symplify\CodingStandard\Sniffs\CleanCode\CognitiveComplexitySniff:
@@ -15,5 +15,8 @@ services:
     absoluteComplexity: 8
 
 parameters:
-  exclude_checkers:
-    - 'PhpCsFixer\Fixer\Whitespace\SingleBlankLineAtEofFixer'
+  skip:
+     PhpCsFixer\Fixer\Whitespace\SingleBlankLineAtEofFixer: ~
+
+  exclude_files:
+    - src/Migrations/*

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -19,22 +21,30 @@ class Tag
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @var string
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Gedmo\Slug(fields={"name"})
+     *
+     * @var string
      */
     private $slug;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Article", mappedBy="tags")
+     *
+     * @var \App\Entity\Article[]|\Doctrine\Common\Collections\Collection
      */
     private $articles;
 
@@ -73,7 +83,7 @@ class Tag
     }
 
     /**
-     * @return Collection|Article[]
+     * @return Article[]|Collection
      */
     public function getArticles(): Collection
     {

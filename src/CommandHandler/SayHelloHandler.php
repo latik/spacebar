@@ -7,7 +7,7 @@ namespace App\CommandHandler;
 use App\Command\SayHelloCommand;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
-class SayHelloHandler implements MessageHandlerInterface
+final class SayHelloHandler implements MessageHandlerInterface
 {
     public function __invoke(SayHelloCommand $command): void
     {

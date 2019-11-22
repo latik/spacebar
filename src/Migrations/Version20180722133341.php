@@ -16,12 +16,12 @@ final class Version20180722133341 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf(
-          'mysql' !== $this->connection->getDatabasePlatform()->getName(),
-          'Migration can only be executed safely on \'mysql\'.'
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
         );
 
         $this->addSql(
-          'CREATE TABLE article (
+            'CREATE TABLE article (
             id INT AUTO_INCREMENT NOT NULL, 
             title VARCHAR(255) NOT NULL, 
             slug VARCHAR(100) NOT NULL, 
@@ -37,8 +37,8 @@ final class Version20180722133341 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf(
-          'mysql' !== $this->connection->getDatabasePlatform()->getName(),
-          'Migration can only be executed safely on \'mysql\'.'
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
         );
 
         $this->addSql('DROP TABLE article');

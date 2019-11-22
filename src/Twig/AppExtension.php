@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Twig;
 
@@ -23,17 +25,22 @@ final class AppExtension extends AbstractExtension implements ServiceSubscriberI
     public function getFilters(): array
     {
         return [
-          new TwigFilter('cached_markdown', function ($value) : string {
-              return $this->processMarkdown($value);
-          }, ['is_safe' => ['html']]),
+            new TwigFilter(
+                'cached_markdown',
+                function ($value): string {
+                    return $this->processMarkdown($value);
+                },
+                ['is_safe' => ['html']]
+            ),
         ];
     }
 
     public function processMarkdown($value): string
     {
         return $this->container
-          ->get(MarkdownHelper::class)
-          ->parse($value);
+            ->get(MarkdownHelper::class)
+            ->parse($value)
+        ;
     }
 
     /**
@@ -41,10 +48,10 @@ final class AppExtension extends AbstractExtension implements ServiceSubscriberI
      *
      * @return array The required service types, optionally keyed by service names
      */
-    public static function getSubscribedServices()
+    public static function getSubscribedServices(): array
     {
         return [
-          MarkdownHelper::class,
+            MarkdownHelper::class,
         ];
     }
 }

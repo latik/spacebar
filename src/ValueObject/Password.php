@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 namespace App\ValueObject;
+
 use InvalidArgumentException;
+use RuntimeException;
 use const PASSWORD_DEFAULT;
 
 final class Password
@@ -32,7 +34,13 @@ final class Password
 
     public function toHash(): string
     {
-        return password_hash($this->password, PASSWORD_DEFAULT);
+        $hash = password_hash($this->password, PASSWORD_DEFAULT);
+
+        if (!$hash) {
+            throw new RuntimeException('Unable hash password');
+        }
+
+        return $hash;
     }
 
     public function matches(string $hash): bool

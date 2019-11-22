@@ -16,8 +16,8 @@ final class Version20180722133713 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf(
-          'mysql' !== $this->connection->getDatabasePlatform()->getName(),
-          'Migration can only be executed safely on \'mysql\'.'
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
         );
 
         $this->addSql('CREATE UNIQUE INDEX UNIQ_23A0E66989D9B62 ON article (slug)');
@@ -27,8 +27,8 @@ final class Version20180722133713 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf(
-          'mysql' !== $this->connection->getDatabasePlatform()->getName(),
-          'Migration can only be executed safely on \'mysql\'.'
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
         );
 
         $this->addSql('DROP INDEX UNIQ_23A0E66989D9B62 ON article');

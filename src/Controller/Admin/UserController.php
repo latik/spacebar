@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/user")
  */
-class UserController
+final class UserController
 {
     /**
      * @Route(methods={"POST"})

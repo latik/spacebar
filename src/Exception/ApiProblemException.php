@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Validator\ConstraintViolation;
 use Traversable;
 
-class ApiProblemException extends HttpException
+final class ApiProblemException extends HttpException
 {
     /**
      * @var Traversable

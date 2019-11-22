@@ -6,6 +6,9 @@ namespace App\Command;
 
 final class JobNotification
 {
+    /**
+     * @var mixed
+     */
     private $payload;
 
     /**

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -9,8 +11,8 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Comment|null find($id, $lockMode = null, $lockVersion = null)
- * @method Comment|null findOneBy(array $criteria, array $orderBy = null)
+ * @method null|Comment find($id, $lockMode = null, $lockVersion = null)
+ * @method null|Comment findOneBy(array $criteria, array $orderBy = null)
  * @method Comment[]    findAll()
  * @method Comment[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
@@ -24,27 +26,31 @@ final class CommentRepository extends ServiceEntityRepository
     public static function createNonDeletedCriteria(): Criteria
     {
         return Criteria::create()
-          ->andWhere(Criteria::expr()->eq('isDeleted', false))
-          ->orderBy(['createdAt' => 'DESC']);
+            ->andWhere(Criteria::expr()->eq('isDeleted', false))
+            ->orderBy(['createdAt' => 'DESC'])
+        ;
     }
 
     /**
-     * @param string|null $term
+     * @param null|string $term
      *
      * @return QueryBuilder
      */
     public function getWithSearchQueryBuilder(?string $term): QueryBuilder
     {
         $qb = $this->createQueryBuilder('c')
-          ->innerJoin('c.article', 'a')
-          ->addSelect('a');
+            ->innerJoin('c.article', 'a')
+            ->addSelect('a')
+        ;
 
         if ($term) {
             $qb->andWhere('c.content LIKE :term OR c.authorName LIKE :term OR a.title LIKE :term')
-              ->setParameter('term', '%'.$term.'%');
+                ->setParameter('term', '%'.$term.'%')
+            ;
         }
 
         return $qb
-          ->orderBy('c.createdAt', 'DESC');
+            ->orderBy('c.createdAt', 'DESC')
+        ;
     }
 }

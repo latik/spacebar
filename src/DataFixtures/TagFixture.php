@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\DataFixtures;
 
@@ -13,9 +15,9 @@ final class TagFixture extends Fixture
      */
     public $faker;
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
-        $this->createMany(Tag::class, 10, function (Tag $tag) {
+        $this->createMany(Tag::class, 10, function (Tag $tag): void {
             $tag->setName($this->faker->realText(20));
         });
 
