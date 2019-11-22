@@ -8,7 +8,7 @@ use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\QueryBuilder;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 
 /**
  * @method null|Comment find($id, $lockMode = null, $lockVersion = null)
@@ -18,7 +18,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 final class CommentRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Comment::class);
     }
