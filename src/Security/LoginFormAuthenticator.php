@@ -21,7 +21,6 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
-use UnexpectedValueException;
 
 final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
@@ -61,8 +60,6 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     /**
      * Return the URL to the login page.
-     *
-     * @return string
      */
     protected function getLoginUrl(): string
     {
@@ -73,10 +70,6 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      * Does the authenticator support the given Request?
      *
      * If this returns false, the authenticator will be skipped.
-     *
-     * @param Request $request
-     *
-     * @return bool
      */
     public function supports(Request $request): bool
     {
@@ -104,8 +97,6 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      *
      * @param Request $request
      *
-     * @throws UnexpectedValueException If null is returned
-     *
      * @return mixed Any non-null value
      */
     public function getCredentials(Request $request): array
@@ -132,14 +123,13 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      * You may throw an AuthenticationException if you wish. If you return
      * null, then a UsernameNotFoundException is thrown for you.
      *
-     * @param mixed                 $credentials
-     * @param UserProviderInterface $userProvider
+     * @param mixed $credentials
      *
      * @throws AuthenticationException
      *
-     * @return null|UserInterface
+     * @return UserInterface|null
      */
-    public function getUser($credentials, UserProviderInterface $userProvider): ?User
+    public function getUser($credentials, UserProviderInterface $userProvider): ?UserInterface
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
@@ -161,8 +151,6 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      * @param mixed         $credentials
      * @param UserInterface $user
      *
-     * @throws AuthenticationException
-     *
      * @return bool
      */
     public function checkCredentials($credentials, UserInterface $user): bool
@@ -183,7 +171,7 @@ final class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      * @param TokenInterface $token
      * @param string         $providerKey The provider (i.e. firewall) key
      *
-     * @return null|Response
+     * @return RedirectResponse|null
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): ?RedirectResponse
     {
