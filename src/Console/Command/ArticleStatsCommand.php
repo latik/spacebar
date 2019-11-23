@@ -32,6 +32,8 @@ final class ArticleStatsCommand extends Command
      * @return int|null|void
      *
      * @throws Exception
+     *
+     * @return int
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

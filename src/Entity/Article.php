@@ -37,11 +37,15 @@ class Article
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @var string|null
      */
     private $content;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @var \DateTimeInterface|null
      */
     private $publishedAt;
 
@@ -57,6 +61,8 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string|null
      */
     private $imageFilename;
 
@@ -161,7 +167,7 @@ class Article
 
     public function getImagePath(): string
     {
-        return 'images/'.$this->getImageFilename();
+        return sprintf('images/%s', (string) $this->getImageFilename());
     }
 
     public function setImageFilename(?string $imageFilename): self

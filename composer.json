@@ -50,7 +50,7 @@
         "symplify/coding-standard": "^6.0",
         "symplify/easy-coding-standard": "^6.0",
         "thecodingmachine/phpstan-strict-rules": "^0.11.2",
-        "vimeo/psalm": "^3.4"
+        "vimeo/psalm": "^3.6"
     },
     "config": {
         "preferred-install": {

@@ -51,12 +51,12 @@ class RequestObjectResolver implements ArgumentValueResolverInterface
             $data = $request->query->all();
         }
 
-        if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
-            $data = json_decode($request->getContent(), true);
+        if (0 === strpos($request->headers->get('Content-Type') ?? '', 'application/json')) {
+            $data = (array) json_decode((string) ($request->getContent() ?? ''), true);
             $request->request->replace(is_array($data) ? $data : []);
         }
 
-        $dto = $this->denormalizer->denormalize($data, $argument->getType());
+        $dto = $this->denormalizer->denormalize($data, (string) $argument->getType());
 
         $this->validateDTO($dto);
 
