@@ -4,6 +4,7 @@ parameters:
 
     sets:
         - 'code-quality'
+        - 'solid'
         - 'php71'
         - 'php72'
         - 'php73'
