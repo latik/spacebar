@@ -16,6 +16,10 @@ services:
                             # fetching services directly from the container via $container->get() won't work.
                             # The best practice is to be explicit about your dependencies anyway.
 
+    _instanceof:
+        App\Service\Loader:
+            tags: ['app.handler']
+
         bind:
             $markdownLogger: '@monolog.logger.markdown'
 
@@ -30,6 +34,9 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Service\ResolverCollection:
+        arguments: [!tagged app.handler]
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
