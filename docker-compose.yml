@@ -14,14 +14,17 @@ services:
         networks:
             - webnet
 
-    composer:
-        image: composer:latest
-        volumes:
-            - .:/var/www
-        working_dir: /var/www
+    graphql:
+        image: hasura/graphql-engine:latest
+        environment:
+            HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:spacebar@database:5432/spacebar
+            HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+        ports:
+            - 4466:8080
         depends_on:
-            - app
-        command: install
+            - database
+        networks:
+            - webnet
 
     web:
         image: nginx:alpine
