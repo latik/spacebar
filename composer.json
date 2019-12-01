@@ -6,7 +6,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "enqueue/amqp-bunny": "^0.9.12",
-        "friendsofsymfony/elastica-bundle": "^5.1",
         "knplabs/knp-markdown-bundle": "^1.7",
         "knplabs/knp-paginator-bundle": "^4.0",
         "knplabs/knp-time-bundle": "^1.9",
