@@ -8,12 +8,9 @@ monolog:
                 # regex: exclude all 404 errors from the logs
                 - ^/
         nested:
-            type: elasticsearch
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
-            elasticsearch:
-                host: 'elasticsearch'
-                user: 'elastic'
-                password: '%env(ELASTIC_PASSWORD)%'
         console:
             type: console
             process_psr_3_messages: false
